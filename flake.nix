@@ -26,9 +26,15 @@
       in
         with pkgs; {
           packages.${system}.default = basedpyright;
-          apps.${system}.default = {
-            type = "app";
-            program = "${basedpyright}/bin/basedpyright";
+          apps.${system} = {
+            default = {
+              type = "app";
+              program = "${basedpyright}/bin/basedpyright";
+            };
+            language-server = {
+              type = "app";
+              program = "${basedpyright}/bin/basedpyright-langserver";
+            };
           };
           devShells.${system}.default =
             mkShell {packages = [basedpyright];};
