@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nodejs"
+version = "18.4.0a4"
+dependencies = []
+requires-python = ">=3.8"
+authors = [ {name = "Sam Willis"} ]
+maintainers = [ {name = "Sam Willis"} ]
+description = "Project to repackage Node.js releases as Python binary wheels for distribution via PyPI"
+readme = "README.md"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/samwillis/nodejs-pyp"
