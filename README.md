@@ -23,14 +23,12 @@ Use it as a flake input:
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    basedpyright = {
+    basedpyright-nix = {
         url = "github:LoganWalls/basedpyright-nix";
         inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = {nixpkgs, basedpyright, ...}: let
-    # Use `basedpyright` however you like. For example,
-    # make a devShell with it available as a package:
+  outputs = {nixpkgs, basedpyright-nix, ...}: let
     inherit (nixpkgs) lib;
     withSystem = f:
       lib.fold lib.recursiveUpdate {}
@@ -39,6 +37,7 @@ Use it as a flake input:
     withSystem (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
+        basedpyright = inputs.basedpyright.packages.${system}.default;
       in
         with pkgs; {
           devShells.${system}.default =
